@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace PalmyWeatherServices.Controllers
 {
@@ -11,9 +12,11 @@ namespace PalmyWeatherServices.Controllers
     {
         // GET api/values
         [HttpGet]
-        public IEnumerable<string> Get()
+        public ActionResult Get()
         {
-            return new string[] { "value1", "value2" };
+            List<TemperatureItem> result = DB.Test();
+
+            return Json(result);
         }
 
         // GET api/values/5
