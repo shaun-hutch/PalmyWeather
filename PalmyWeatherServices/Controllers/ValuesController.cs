@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -14,22 +15,46 @@ namespace PalmyWeatherServices.Controllers
         [HttpGet]
         public ActionResult Get()
         {
-            List<TemperatureItem> result = DB.Test();
+            List<TemperatureItem> results = DB.Temperatures();
 
-            return Json(result);
+            return Json(results);
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
         public string Get(int id)
-        {
+        { 
             return "value";
         }
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody]string value)
+        public ActionResult Post([FromBody]TemperatureItem item)
         {
+            if (!item.TempInside.HasValue && !item.TempOutside.HasValue)
+            {
+                return BadRequest();
+            }
+
+            try
+            {
+                int id = DB.AddTemperatureItem(item);
+
+                if (id > 0)
+                {
+                    return Ok(id);
+                }
+                else
+                {
+                    return BadRequest();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                return new StatusCodeResult(500);
+            }
+
         }
 
         // PUT api/values/5
