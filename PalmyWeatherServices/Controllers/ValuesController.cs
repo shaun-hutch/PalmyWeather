@@ -30,14 +30,14 @@ namespace PalmyWeatherServices.Controllers
         // POST api/values
         [HttpPost]
         public ActionResult Post([FromBody]TemperatureItem item)
-        {
-            if (!item.TempInside.HasValue && !item.TempOutside.HasValue)
-            {
-                return BadRequest();
-            }
-
+        { 
             try
             {
+                if (!item.TempInside.HasValue && !item.TempOutside.HasValue)
+                {
+                    DB.Log("Item malformed, please check your payload.", "Error");
+                    return BadRequest();
+                }
                 int id = DB.AddTemperatureItem(item);
 
                 if (id > 0)
@@ -46,12 +46,14 @@ namespace PalmyWeatherServices.Controllers
                 }
                 else
                 {
+                    DB.Log("Unable to insert item.", "Error");
                     return BadRequest();
                 }
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.ToString());
+                DB.Log(ex.ToString(), "Error");
                 return new StatusCodeResult(500);
             }
 

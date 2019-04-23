@@ -42,9 +42,10 @@ namespace PalmyWeatherServices
                     }
                 }
             }
-            catch (SqlException ex)
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.ToString());
+                Log(ex.ToString(), "Error");
                 throw ex;
             }
 
@@ -71,13 +72,41 @@ namespace PalmyWeatherServices
                     }
                 }
             }
-            catch (SqlException ex)
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                Log(ex.ToString(), "Error");
+                throw ex;
+            }
+
+            return inserted;
+        }
+
+        public static void Log(string message, string level)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(constring))
+                {
+                    using (SqlCommand cmd = new SqlCommand())
+                    {
+                        cmd.Connection = con;
+                        cmd.Connection.Open();
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.CommandText = "Log_Insert";
+                        cmd.Parameters.AddWithValue("@Message", message);
+                        cmd.Parameters.AddWithValue("@Level", level);
+                        cmd.ExecuteScalar();
+                        cmd.Connection.Close();
+                    }
+                }
+            }
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.ToString());
                 throw ex;
             }
 
-            return inserted;
         }
     }
 }
