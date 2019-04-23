@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PalmyWeatherServices", "PalmyWeatherServices\PalmyWeatherServices.csproj", "{22348EA0-053B-4A5A-A900-BB6BDD4E8BF2}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PalmyWeatherWeb", "PalmyWeatherWeb", "{41B2ED3B-03EB-4217-B20B-6B1B134B4168}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PalmyWeather", "PalmyWeatherWeb\PalmyWeather\PalmyWeather.csproj", "{6BC2FD39-F994-41DE-B9BA-E5309728C524}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,5 +15,9 @@ Global
 		{22348EA0-053B-4A5A-A900-BB6BDD4E8BF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{22348EA0-053B-4A5A-A900-BB6BDD4E8BF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{22348EA0-053B-4A5A-A900-BB6BDD4E8BF2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6BC2FD39-F994-41DE-B9BA-E5309728C524}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6BC2FD39-F994-41DE-B9BA-E5309728C524}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6BC2FD39-F994-41DE-B9BA-E5309728C524}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6BC2FD39-F994-41DE-B9BA-E5309728C524}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
