@@ -1,0 +1,12 @@
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+.line-chart {
+    border: 1px solid lightgray;
+}
+
+/* Hide/rearrange for smaller screens */
+@media screen and (max-width: 767px) {
+
+}
